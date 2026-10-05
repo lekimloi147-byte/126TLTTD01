@@ -17,11 +17,28 @@
         android:layout_marginBottom="24dp" />
 
     <TextView
-        android:id="@+id/tvHoTen"
+        android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#FFFFFF"
         android:textSize="22sp"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvClass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#B0BEC5"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvGpa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFC107"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:layout_marginBottom="32dp" />
 
     <Button

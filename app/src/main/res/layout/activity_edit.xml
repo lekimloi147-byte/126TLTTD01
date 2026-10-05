@@ -10,28 +10,55 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CHỈNH SỬA HỌ TÊN"
+        android:text="CHỈNH SỬA THÔNG TIN"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         android:layout_marginBottom="24dp" />
-
     <EditText
-        android:id="@+id/edtTen"
+        android:id="@+id/edtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nhập họ tên"
+        android:hint="Nhập họ và tên"
+        android:textColorHint="#B0BEC5"
         android:textColor="#FFFFFF"
-        android:textColorHint="#AAAAAA"
-        android:background="#2E4C8A"
-        android:padding="14dp"
-        android:layout_marginBottom="24dp" />
+        android:padding="12dp"
+        android:layout_marginBottom="16dp" />
 
-    <Button
-        android:id="@+id/btnLuu"
+    <!-- Ô nhập Lớp sinh hoạt -->
+    <EditText
+        android:id="@+id/edtClass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lưu &amp; Quay Lại"
-        android:backgroundTint="#34B469" />
+        android:hint="Nhập lớp sinh hoạt"
+        android:textColorHint="#B0BEC5"
+        android:textColor="#FFFFFF"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp" />
+    <EditText
+        android:id="@+id/edtGpa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập điểm GPA (0.0 - 4.0)"
+        android:inputType="numberDecimal"
+        android:textColorHint="#B0BEC5"
+        android:textColor="#FFFFFF"
+        android:padding="12dp"
+        android:layout_marginBottom="24dp" />
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lưu và Phản Hồi"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="12dp" />
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hủy Bỏ"
+        android:backgroundTint="#F44336"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>

@@ -11,38 +11,52 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var tvHoTen: TextView
-    private var hoTenHienTai: String = "Chưa có thông tin"
+    private lateinit var tvName: TextView
+    private lateinit var tvClass: TextView
+    private lateinit var tvGpa: TextView
+    private var currentName: String = "Lê Kim Lợi"
+    private var currentClass: String = "24sk1"
+    private var currentGpa: String = "3.8"
 
-    // Khai bao Launcher theo chuan Activity Result API
     private lateinit var editLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        tvHoTen = findViewById(R.id.tvHoTen)
-        tvHoTen.text = hoTenHienTai
+        tvName = findViewById(R.id.tvName)
+        tvClass = findViewById(R.id.tvClass)
+        tvGpa = findViewById(R.id.tvGpa)
 
-        // Dang ky Launcher NGAY TRONG onCreate (bat buoc, khong duoc dang ky trong click)
+        updateUI()
         editLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                val tenMoi = result.data?.getStringExtra("EXTRA_NEW_NAME")
-                tenMoi?.let {
-                    hoTenHienTai = it
-                    tvHoTen.text = hoTenHienTai
+                result.data?.let { data ->
+                    currentName = data.getStringExtra("EXTRA_NAME") ?: currentName
+                    currentClass = data.getStringExtra("EXTRA_CLASS") ?: currentClass
+                    currentGpa = data.getStringExtra("EXTRA_GPA") ?: currentGpa
+
+                    updateUI() // Cập nhật lại giao diện sau khi nhận dữ liệu mới
                 }
             }
         }
 
         findViewById<Button>(R.id.btnChinhSua).setOnClickListener {
-            // Gui du lieu hien tai sang EditActivity qua Explicit Intent
+            // Gửi toàn bộ dữ liệu hiện tại sang EditActivity
             val intent = Intent(this, EditActivity::class.java).apply {
-                putExtra("EXTRA_CURRENT_NAME", hoTenHienTai)
+                putExtra("EXTRA_NAME", currentName)
+                putExtra("EXTRA_CLASS", currentClass)
+                putExtra("EXTRA_GPA", currentGpa)
             }
             editLauncher.launch(intent)
         }
+    }
+
+    private fun updateUI() {
+        tvName.text = "Họ tên: $currentName"
+        tvClass.text = "Lớp: $currentClass"
+        tvGpa.text = "GPA: $currentGpa"
     }
 }

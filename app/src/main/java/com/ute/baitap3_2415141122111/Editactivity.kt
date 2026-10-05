@@ -13,21 +13,26 @@ class EditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit)
 
-        val edtTen = findViewById<EditText>(R.id.edtTen)
-
-        // Nhan ten hien tai tu Intent va dien san vao EditText
-        val tenHienTai = intent.getStringExtra("EXTRA_CURRENT_NAME") ?: ""
-        edtTen.setText(tenHienTai)
-
-        findViewById<Button>(R.id.btnLuu).setOnClickListener {
-            val tenMoi = edtTen.text.toString().trim()
-
-            // Dong goi ten moi vao Intent ket qua
+        // Ánh xạ đúng ID từ activity_edit.xml
+        val edtName = findViewById<EditText>(R.id.edtName)
+        val edtClass = findViewById<EditText>(R.id.edtClass)
+        val edtGpa = findViewById<EditText>(R.id.edtGpa)
+        val btnSave = findViewById<Button>(R.id.btnSave)
+        val btnCancel = findViewById<Button>(R.id.btnCancel)
+        edtName.setText(intent.getStringExtra("EXTRA_NAME") ?: "")
+        edtClass.setText(intent.getStringExtra("EXTRA_CLASS") ?: "")
+        edtGpa.setText(intent.getStringExtra("EXTRA_GPA") ?: "")
+        btnSave.setOnClickListener {
             val resultIntent = Intent().apply {
-                putExtra("EXTRA_NEW_NAME", tenMoi)
+                putExtra("EXTRA_NAME", edtName.text.toString().trim())
+                putExtra("EXTRA_CLASS", edtClass.text.toString().trim())
+                putExtra("EXTRA_GPA", edtGpa.text.toString().trim())
             }
-            // Bat buoc goi setResult TRUOC finish()
             setResult(Activity.RESULT_OK, resultIntent)
+            finish()
+        }
+        btnCancel.setOnClickListener {
+            setResult(Activity.RESULT_CANCELED)
             finish()
         }
     }
